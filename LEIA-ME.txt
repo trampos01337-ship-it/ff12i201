@@ -1,0 +1,26 @@
+# Netlify - Central de Recompensas
+
+## Variáveis de ambiente (obrigatórias)
+No painel da Netlify → Site settings → Environment variables, adicione:
+
+- MISTICPAY_ACCESS_KEY_ID
+- MISTICPAY_ACCESS_KEY_SECRET
+- MISTICPAY_PAYER_DOCUMENT   (CPF válido, sem pontos)
+
+Nunca coloque essas chaves no código ou no frontend.
+
+## Como fazer o deploy
+1. Crie um repositório no GitHub com o conteúdo desta pasta.
+2. Na Netlify → Add new site → Import from Git.
+3. Configure:
+   - Build command: (deixe vazio, o frontend já está buildado)
+   - Publish directory: .
+   - Functions directory: netlify/functions
+4. Adicione as variáveis de ambiente acima.
+5. Faça o deploy.
+6. Em Domain settings, adicione seu domínio personalizado.
+
+## Observações
+- As rotas /api/... são redirecionadas automaticamente para as Functions.
+- O frontend já está compilado na raiz.
+- Rate limiting não está implementado (serverless). Para proteção extra, considere Netlify Rate Limiting ou um serviço externo se o tráfego for alto.
